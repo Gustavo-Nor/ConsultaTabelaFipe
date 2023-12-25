@@ -60,20 +60,20 @@ public class Principal {
         leitura.nextLine();
 
         json = consumo.obterDados(ENDERECO + tipoVeiculo + "/marcas/" + codigoMarca + "/modelos/" + codigoModelo + "/anos");
-        List<Dados> dadosModelo = conversor.obterLista(json, Dados.class);
+        List<Dados> anos = conversor.obterLista(json, Dados.class);
         List<Veiculo> informacoesVeiculos = new ArrayList<>();
 
-        for (int i = 0; i < dadosModelo.size(); i++){
-            json = consumo.obterDados(ENDERECO + tipoVeiculo + "/marcas/" + codigoMarca + "/modelos/" + codigoModelo + "/anos/" + dadosModelo.get(i).codigo());
+        for (int i = 0; i < anos.size(); i++){
+            json = consumo.obterDados(ENDERECO + tipoVeiculo + "/marcas/" + codigoMarca + "/modelos/" + codigoModelo + "/anos/" + anos.get(i).codigo());
             Veiculo dadosVeiculo = conversor.obterDados(json, Veiculo.class);
             informacoesVeiculos.add(dadosVeiculo);
         }
         informacoesVeiculos.forEach(e -> System.out.println(
-                "Marca: " + e.Marca() +
-                        "| Modelo: " + e.Modelo() +
-                        "| Ano: " + e.AnoModelo() +
-                        "| Combustível: " + e.Combustivel() +
-                        "| Valor: " + e.Valor()
+                "Marca: " + e.marca() +
+                        "| Modelo: " + e.modelo() +
+                        "| Ano: " + e.anoModelo() +
+                        "| Combustível: " + e.combustivel() +
+                        "| Valor: " + e.valor()
         ));
     }
 }
